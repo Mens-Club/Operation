@@ -1,0 +1,10 @@
+apache-airflow-providers-celery
+redis
+mlflow==2.5.0
+boto3==1.26.8
+pandas
+psycopg2-binary  
+scikit-learn
+xgboost
+pycaret
+optuna

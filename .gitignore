@@ -6,6 +6,10 @@ __pycache__/
 # C extensions
 *.so
 
+airflow/.env
+mlflow/.env
+airflow/entrypoint.sh
+
 # Distribution / packaging
 .Python
 build/
