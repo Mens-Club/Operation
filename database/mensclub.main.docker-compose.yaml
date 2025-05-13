@@ -1,0 +1,62 @@
+services:
+
+  MySQL:
+    image: mysql:8.0
+    container_name: mensclub-MySQL
+    restart: always
+    ports:
+      - "3300:3306"
+    env_file:
+      - ./.env
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+      - --bind-address=0.0.0.0
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.14.0
+    container_name: mensclub-elasticsearch
+    environment:
+      - discovery.type=single-node
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - xpack.security.enabled=false
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    volumes:
+      - esdata:/usr/share/elasticsearch/data
+  
+  redis:
+      image: redis:latest
+      container_name: mensclub-cache-manager
+      ports:
+        - "6380:6379"
+  PGVector:
+    image: pgvector/pgvector:pg17
+
+    container_name: MensCLUB-PGVec
+
+    restart: always
+    env_file:
+      - ./.env
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=mydatabase=${POSTGRES_DB}
+    ports:
+      - "5435:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data\
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql 
+
+volumes:
+  mysql_data:
+  esdata: 
+  pgdata:

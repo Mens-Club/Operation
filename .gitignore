@@ -9,6 +9,7 @@ __pycache__/
 airflow/.env
 mlflow/.env
 airflow/entrypoint.sh
+database/.env
 
 # Distribution / packaging
 .Python
