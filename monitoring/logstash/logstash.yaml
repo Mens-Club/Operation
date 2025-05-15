@@ -1,0 +1,11 @@
+http.host: "0.0.0.0"
+
+# Elasticsearch 연결 정보
+xpack.monitoring.enabled: true
+xpack.monitoring.elasticsearch.hosts: ["${ELASTICSEARCH_HOSTS}"]
+xpack.monitoring.elasticsearch.username: "${XPACK_MONITORING_ELASTICSEARCH_USERNAME}"
+xpack.monitoring.elasticsearch.password: "${XPACK_MONITORING_ELASTICSEARCH_PASSWORD}"
+
+# 선택적 모니터링 설정
+xpack.monitoring.collection.interval: 10s
+xpack.monitoring.collection.pipeline.details.enabled: true

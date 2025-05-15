@@ -16,19 +16,21 @@ services:
       - S3_LOG_PREFIX=${S3_LOG_PREFIX}
       - ENDPOINT_URL=${ENDPOINT_URL}
       - ELASTICSEARCH_HOSTS=${ELASTICSEARCH_HOSTS}
-    
+      - XPACK_MONITORING_ENABLED=true
+      - XPACK_MONITORING_ELASTICSEARCH_HOSTS=${ELASTICSEARCH_HOSTS}
+      - XPACK_MONITORING_ELASTICSEARCH_USERNAME=${XPACK_MONITORING_ELASTICSEARCH_USERNAME}
+      - XPACK_MONITORING_ELASTICSEARCH_PASSWORD=${XPACK_MONITORING_ELASTICSEARCH_PASSWORD}
     networks:
       - elk-networks
 
   kibana:
     container_name: kibana
     image: docker.elastic.co/kibana/kibana:7.14.0
-    env_file:
-      - ./.env
+
+    volumes:
+      - ./kibana/kibana.yaml:/usr/share/kibana/config/kibana.yml
     ports:
       - "5601:5601"
-    environment:
-      - ELASTICSEARCH_HOSTS=${ELASTICSEARCH_HOSTS}
     networks:
       - elk-networks
 
