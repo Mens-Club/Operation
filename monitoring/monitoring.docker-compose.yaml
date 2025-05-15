@@ -1,5 +1,6 @@
 services:
   prometheus:
+    container_name: prometheus
     image: prom/prometheus
     volumes:
       - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
@@ -7,12 +8,20 @@ services:
       - "9090:9090"
 
   pushgateway:
+    container_name: gateway
     image: prom/pushgateway
     ports:
       - "9091:9091"
 
   grafana:
+    container_name: grafana-dashboards
     image: grafana/grafana
+    env_file:
+      - ./.env
+    environment:
+      GF_DASHBOARDS_MIN_REFRESH_INTERVAL: 500ms
+      GF_SECURITY_ADMIN_USER: ${GF_SECURITY_ADMIN_USER}
+      GF_SECURITY_ADMIN_PASSWORD: ${GF_SECURITY_ADMIN_PASSWORD}
     ports:
       - "3000:3000"
     volumes:

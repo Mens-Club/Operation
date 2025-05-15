@@ -1,0 +1,39 @@
+services:
+  logstash:
+    image: docker.elastic.co/logstash/logstash:7.14.0
+    container_name: logstash
+    volumes:
+      - ./logstash/logstash.conf:/usr/share/logstash/pipeline/logstash.conf
+    ports:
+      - "5000:5000"
+    env_file:
+      - ./.env
+    environment:
+      AWS_REGION: ${AWS_REGION}
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+      S3_BUCKET_NAME: ${S3_BUCKET_NAME}
+      S3_LOG_PREFIX: ${S3_LOG_PREFIX}
+      ENDPOINT_URL: ${ENDPOINT_URL}
+      ELASTICSEARCH_HOSTS: ${ELASTICSEARCH_HOSTS}
+      XPACK_MONITORING_ENABLED: true
+      XPACK_MONITORING_ELASTICSEARCH_HOSTS: ${ELASTICSEARCH_HOSTS}
+      XPACK_MONITORING_ELASTICSEARCH_USERNAME: ${XPACK_MONITORING_ELASTICSEARCH_USERNAME}
+      XPACK_MONITORING_ELASTICSEARCH_PASSWORD: ${XPACK_MONITORING_ELASTICSEARCH_PASSWORD}
+    networks:
+      - elk-networks
+
+  kibana:
+    container_name: kibana
+    image: docker.elastic.co/kibana/kibana:7.14.0
+
+    volumes:
+      - ./kibana/kibana.yaml:/usr/share/kibana/config/kibana.yml
+    ports:
+      - "5601:5601"
+    networks:
+      - elk-networks
+
+networks:
+  elk-networks:
+    external: True

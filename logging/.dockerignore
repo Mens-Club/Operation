@@ -1,0 +1,8 @@
+__pycache__/
+*.zip
+*.pt
+*.safetensors
+.venv/
+.env
+outputs/
+logs/

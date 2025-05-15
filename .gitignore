@@ -10,7 +10,10 @@ airflow/.env
 mlflow/.env
 airflow/entrypoint.sh
 database/.env
-monitoring/kibana/
+logging/kibana/
+monitoring/grafana/
+
+
  
 # Distribution / packaging
 .Python
