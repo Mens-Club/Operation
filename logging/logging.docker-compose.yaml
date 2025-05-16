@@ -5,7 +5,7 @@ services:
     volumes:
       - ./logstash/logstash.conf:/usr/share/logstash/pipeline/logstash.conf
     ports:
-      - "5000:5000"
+      - "${LOGSTASH_PORT}:5000"
     env_file:
       - ./.env
     environment:
@@ -20,8 +20,6 @@ services:
       XPACK_MONITORING_ELASTICSEARCH_HOSTS: ${ELASTICSEARCH_HOSTS}
       XPACK_MONITORING_ELASTICSEARCH_USERNAME: ${XPACK_MONITORING_ELASTICSEARCH_USERNAME}
       XPACK_MONITORING_ELASTICSEARCH_PASSWORD: ${XPACK_MONITORING_ELASTICSEARCH_PASSWORD}
-    networks:
-      - elk-networks
 
   kibana:
     container_name: kibana
@@ -31,9 +29,3 @@ services:
       - ./kibana/kibana.yaml:/usr/share/kibana/config/kibana.yml
     ports:
       - "5601:5601"
-    networks:
-      - elk-networks
-
-networks:
-  elk-networks:
-    external: True
