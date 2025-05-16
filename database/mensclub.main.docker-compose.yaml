@@ -4,10 +4,10 @@ services:
     image: mysql:8.0
     container_name: mensclub-MySQL
     restart: always
-    ports:
-      - "3300:3306"
     env_file:
       - ./.env
+    ports:
+      - "${MYSQL_PORT}:3306"
     environment:
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
       - MYSQL_DATABASE=${MYSQL_DATABASE}
@@ -28,8 +28,8 @@ services:
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
       - xpack.security.enabled=false
     ports:
-      - "9200:9200"
-      - "9300:9300"
+      - "${ELASTICSEARCH_PORT}:9200"
+      - "${ELASTICSEARCH_TRANSPORT_PORT}:9300"
     volumes:
       - esdata:/usr/share/elasticsearch/data
   
@@ -37,7 +37,7 @@ services:
       image: redis:latest
       container_name: mensclub-cache-manager
       ports:
-        - "6380:6379"
+        - "${REDIS_PORT}:6379"
   PGVector:
     image: pgvector/pgvector:pg17
 
@@ -51,10 +51,16 @@ services:
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
       - POSTGRES_DB=${POSTGRES_DB}
     ports:
-      - "5435:5432"
+      - "${PGVECTOR_PORT}:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data\
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql 
+
+  node_exporter:
+    image: prom/node-exporter
+    container_name: node_exporter
+    ports:
+      - "${NODE_EXPORTER_PORT}:9100"
 
 volumes:
   mysql_data:
