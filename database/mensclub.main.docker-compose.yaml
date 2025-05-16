@@ -26,7 +26,7 @@ services:
     environment:
       - discovery.type=single-node
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
-      - xpack.security.enabled=false
+      - xpack.security.enabled=true
     ports:
       - "${ELASTICSEARCH_PORT}:9200"
       - "${ELASTICSEARCH_TRANSPORT_PORT}:9300"
