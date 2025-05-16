@@ -56,12 +56,6 @@ services:
       - pgdata:/var/lib/postgresql/data\
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql 
 
-  node_exporter:
-    image: prom/node-exporter
-    container_name: node_exporter
-    ports:
-      - "${NODE_EXPORTER_PORT}:9100"
-
 volumes:
   mysql_data:
   esdata: 
