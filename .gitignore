@@ -178,6 +178,7 @@ cython_debug/
 
 # Ruff stuff:
 .ruff_cache/
+cheorish-lab-897ce33e2b4f.json
 
 # PyPI configuration file
 .pypirc
