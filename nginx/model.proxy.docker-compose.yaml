@@ -1,0 +1,14 @@
+services:
+  proxy:
+    container_name: proxy
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    networks:
+      - model_networks
+
+networks:
+  model_networks:
+    external: true
