@@ -16,7 +16,7 @@ services:
       timeout: 5s
       retries: 5
     networks:
-      - elk-networks
+      - model_networks
 
   mlflow-server:
     build:
@@ -46,9 +46,9 @@ services:
         --default-artifact-root ${MLFLOW_ARTIFACT_STORE_URI} \
         --host 0.0.0.0
     networks:
-      - elk-networks
+      - model_networks
 
 
 networks:
-  elk-networks:
+  model_networks:
     external: true
