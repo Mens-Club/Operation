@@ -32,6 +32,8 @@ services:
       - "${ELASTICSEARCH_TRANSPORT_PORT}:9300"
     volumes:
       - esdata:/usr/share/elasticsearch/data
+    networks:
+      - mensclub-network
   
   redis:
       image: redis:latest
@@ -56,7 +58,12 @@ services:
       - pgdata:/var/lib/postgresql/data
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql 
 
+
 volumes:
   mysql_data:
   esdata: 
   pgdata:
+
+networks:
+  mensclub-network:
+    external: true  

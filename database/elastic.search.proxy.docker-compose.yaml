@@ -6,3 +6,9 @@ services:
       dockerfile: Dockerfile
     ports:
       - "80:80"
+    networks:
+      - mensclub-network
+
+networks:
+  mensclub-network:
+    external: true  
