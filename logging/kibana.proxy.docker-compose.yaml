@@ -1,0 +1,14 @@
+services:
+  proxy:
+    container_name: kibana_proxy
+    build:
+      context: .
+      dockerfile: logstash.Dockerfile
+    ports:
+      - "80:80"
+    networks:
+      - logging_networks
+
+networks:
+  logging_networks:
+    external: true

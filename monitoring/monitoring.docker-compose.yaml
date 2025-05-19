@@ -6,12 +6,17 @@ services:
       - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
     ports:
       - "9090:9090"
+    networks:
+      - monitoring_networks
 
   pushgateway:
     container_name: gateway
     image: prom/pushgateway
     ports:
       - "9091:9091"
+    networks:
+      - monitoring_networks
+
 
   grafana:
     container_name: grafana-dashboards
@@ -26,3 +31,10 @@ services:
       - "3000:3000"
     volumes:
       - ./grafana:/var/lib/grafana
+    networks:
+      - monitoring_networks
+
+networks:
+  monitoring_networks:
+    external: true
+

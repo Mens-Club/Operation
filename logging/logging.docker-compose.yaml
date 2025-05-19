@@ -20,7 +20,8 @@ services:
       XPACK_MONITORING_ELASTICSEARCH_HOSTS: ${ELASTICSEARCH_HOSTS}
       XPACK_MONITORING_ELASTICSEARCH_USERNAME: ${XPACK_MONITORING_ELASTICSEARCH_USERNAME}
       XPACK_MONITORING_ELASTICSEARCH_PASSWORD: ${XPACK_MONITORING_ELASTICSEARCH_PASSWORD}
-
+    networks:
+      - logging_networks
   kibana:
     container_name: kibana
     image: docker.elastic.co/kibana/kibana:7.14.0
@@ -29,3 +30,9 @@ services:
       - ./kibana/kibana.yaml:/usr/share/kibana/config/kibana.yml
     ports:
       - "{KIBANA_PORT}:5601"
+    networks:
+        - logging_networks
+
+networks:
+  logging_networks:
+    external: true
