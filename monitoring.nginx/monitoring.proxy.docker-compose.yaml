@@ -3,13 +3,13 @@ services:
     container_name: monitoring_proxy
     build:
       context: .
-      dockerfile: monitoring.Dockerfile
+      dockerfile: Dockerfile
     ports:
       - "80:80"
     networks:
       - monitoring_networks
     volumes:
-      - ./nginx/.htpasswd:/etc/nginx/.htpasswd
+      - ./.htpasswd:/etc/nginx/.htpasswd
 
 networks:
   monitoring_networks:
