@@ -25,7 +25,10 @@ services:
   kibana:
     container_name: kibana
     image: docker.elastic.co/kibana/kibana:7.14.0
-
+    env_file:
+      - ./.env
+    environment:
+      - KIBANA_PORT=${KIBANA_PORT}
     volumes:
       - ./kibana/kibana.yaml:/usr/share/kibana/config/kibana.yml
     ports:
