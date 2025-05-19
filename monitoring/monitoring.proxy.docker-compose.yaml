@@ -8,6 +8,8 @@ services:
       - "80:80"
     networks:
       - monitoring_networks
+    volumes:
+      - ./nginx/.htpasswd:/etc/nginx/.htpasswd
 
 networks:
   monitoring_networks:
