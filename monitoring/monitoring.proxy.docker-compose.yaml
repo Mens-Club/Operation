@@ -1,0 +1,14 @@
+services:
+  proxy:
+    container_name: monitoring_proxy
+    build:
+      context: .
+      dockerfile: monitoring.Dockerfile
+    ports:
+      - "80:80"
+    networks:
+      - monitoring_networks
+
+networks:
+  monitoring_networks:
+    external: true
