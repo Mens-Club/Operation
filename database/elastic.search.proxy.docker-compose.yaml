@@ -3,7 +3,7 @@ services:
     container_name: proxy
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: elastic.search.Dockerfile
     ports:
       - "80:80"
     networks:
