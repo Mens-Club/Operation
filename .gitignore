@@ -182,3 +182,6 @@ cheorish-lab-897ce33e2b4f.json
 
 # PyPI configuration file
 .pypirc
+
+airflow/logs/
+airflow/plugins/

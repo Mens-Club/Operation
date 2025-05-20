@@ -1,5 +1,6 @@
 # Airflow 공식 이미지 사용
-FROM apache/airflow:slim-latest-python3.9
+FROM apache/airflow:slim-2.11.0rc1-python3.10
+
 
 # 기본 패키지 업데이트 및 필수 패키지 설치
 USER root
@@ -14,7 +15,7 @@ RUN apt-get update && apt-get install -y \
 # requirements.txt 복사
 COPY requirements.txt .
 
-# ✅ airflow 사용자로 변경 후 pip install 실행
+# airflow 사용자로 변경 후 pip install 실행
 USER airflow
 RUN pip install --no-cache-dir -r requirements.txt
 
