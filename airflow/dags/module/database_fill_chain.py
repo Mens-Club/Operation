@@ -1,4 +1,4 @@
-from config.db_connect import get_db_connection 
+from config.connection import get_db_connection 
 from config.main_category_utils import *
 import logging
 

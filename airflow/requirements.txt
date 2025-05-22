@@ -5,3 +5,9 @@ mlflow==2.21.2
 pandas
 psycopg2-binary  
 PyMySQL==1.1.1
+pillow==11.2.1
+pandas
+tiktoken
+evaluate
+textstat
+transformers

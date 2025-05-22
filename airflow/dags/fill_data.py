@@ -1,6 +1,5 @@
 from airflow import DAG
 from airflow.operators.python import PythonOperator
-
 from module.database_fill_chain import main
 from datetime import datetime, timedelta
 
@@ -14,13 +13,12 @@ default_args = {
     'retry_delay': timedelta(minutes=1),
 }
 
-with DAG('recommend_null_data_exchange',
+with DAG('recommend_data_pipeline',
          default_args=default_args,
          schedule_interval='@daily',
          catchup=False) as dag:
-    
+
     fill_data_process = PythonOperator(
         task_id='recommend_fill_data',
         python_callable=main,
-        dag=dag
     )
