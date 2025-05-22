@@ -15,10 +15,13 @@ def get_random_item_id(cursor, category_name):
     results = cursor.fetchall()
     return random.choice(results)['id'] if results else None
 
-def get_price(cursor, item_id):
+def get_price(cursor, item_id, isShoes):
     if not item_id:
         return 0
-    cursor.execute("SELECT price FROM clothes WHERE id = %s", (item_id,))
+    if isShoes:
+        cursor.execute("SELECT price FROM shoes WHERE id = %s", (item_id,))
+    else:
+        cursor.execute("SELECT price FROM clothes WHERE id = %s", (item_id,))
     result = cursor.fetchone()
     return result['price'] if result else 0
 
@@ -73,10 +76,10 @@ def process_recommendations(cursor):
             outer_id = filled_id
 
         total_price = (
-            get_price(cursor, top_id) +
-            get_price(cursor, bottom_id) +
-            get_price(cursor, outer_id) +
-            get_price(cursor, shoes_id)
+            get_price(cursor, top_id, False) +
+            get_price(cursor, bottom_id, False) +
+            get_price(cursor, outer_id, False) +
+            get_price(cursor, shoes_id, True)
         )
 
         cursor.execute("""
