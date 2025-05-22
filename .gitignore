@@ -13,7 +13,7 @@ database/.env
 logging/kibana/
 monitoring/grafana/
 
-
+airflow/local.airflow.docker-compose.yaml
  
 # Distribution / packaging
 .Python
