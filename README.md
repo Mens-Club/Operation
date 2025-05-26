@@ -137,7 +137,7 @@ docker-compose -f mlflow/validation.docker-compose.yaml up -d
 - **Model Training**: Weekly (Monday 3:00 AM)
 - **Model Evaluation**: Daily at 6:00 AM
 
-## 🔧 Configuration
+## Configuration
 
 ### Database Configuration
 
@@ -154,15 +154,12 @@ DATABASE_CONFIG = {
 
 ### Model Training Configuration
 
-```python
-# airflow/dags/config/train_utils.py
-TRAINING_CONFIG = {
-    'batch_size': 32,
-    'epochs': 100,
-    'learning_rate': 0.001,
-    'model_type': 'transformer'
-}
-```
+1. 모델 `Output` 값에 특정 단어 언급 비율 
+    - `계절`, `카테고리` 등이 얼만큼 등장 했는지에 대해 2개의 지표로 성능 확인 
+
+2. `both_requirements_rate`로 2가지 단어가 모두 나왔는지 여부 검증 
+
+
 
 ## Monitoring & Logging
 
