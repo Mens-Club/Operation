@@ -1,6 +1,6 @@
 from airflow import DAG
 from airflow.operators.python import PythonOperator
-from module.database_fill_chain import main
+from module.train_piepeline import runpod_run
 from datetime import datetime, timedelta
 
 default_args = {
@@ -13,12 +13,13 @@ default_args = {
     'retry_delay': timedelta(minutes=1),
 }
 
-with DAG('recommend_data_pipeline',
+with DAG('model_train_pipelines',
          default_args=default_args,
-         schedule_interval=timedelta(days=3), # 3일에 한번 null 데이터 채우기 
+         schedule_interval='0 9 * * 1/2', # 2주에 한 번 격주 한 번이라는 개념
          catchup=False) as dag:
-
-    fill_data_process = PythonOperator(
-        task_id='recommend_fill_data',
-        python_callable=main,
+    
+        fill_data_process = PythonOperator(
+        task_id='runpod_model_train',
+        python_callable=runpod_run,
     )
+

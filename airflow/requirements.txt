@@ -11,3 +11,4 @@ tiktoken
 evaluate
 textstat
 transformers
+requests

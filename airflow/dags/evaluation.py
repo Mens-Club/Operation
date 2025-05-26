@@ -15,7 +15,7 @@ default_args = {
 
 with DAG('evaluate_model_daily',
          default_args=default_args,
-         schedule_interval='@daily',
+         schedule_interval='0 2 * * 1', # 일주일에 한 번 
          catchup=False) as dag:
     
     evaluate_model_task = PythonOperator(
