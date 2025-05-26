@@ -73,8 +73,8 @@ project_root/
 ### 1. Clone Repository
 
 ```bash
-git clone <repository-url>
-cd mlops-platform
+git clone https://github.com/Mens-Club/Operation.git
+cd Operation
 ```
 
 ### 2. Environment Setup
