@@ -165,7 +165,6 @@ DATABASE_CONFIG = {
 
 ### Prometheus Metrics
 
-- Airflow task success/failure rates
 - Model performance metrics
 - System resource usage
 - Database connection status
