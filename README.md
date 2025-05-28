@@ -200,11 +200,26 @@ http://localhost:8080
 2. 필요한 설정을 `airflow/dags/config/`에 추가
 3. 비즈니스 로직을 `airflow/module/`에 구현
 
+-------
+## `MCP`를 활용한 데이터베이스, 모니터링 활용 
 
-### Monitoring API
 
-# Get metrics
-curl http://localhost:9090/api/v1/query?query=up
+`MySQL-MCP`
+
+![image](https://github.com/user-attachments/assets/3a99a6a7-3409-417a-8308-2c462553f8e7)
+
+- `MySQL-MCP`를 활용하여 `Claude`와 연결
+- 주요 인사이트로 사용자 업로드 데이터와 로그인 기록, 테이블 정보등을 조회
+- 주요 트랜잭션을 자연어로 처리 가능하게끔 제공
+
+
+`ELK-Stack-MCP : Elastic Search`
+
+![image](https://github.com/user-attachments/assets/6e14e9cc-0348-41bb-acf6-5d5bf504571b)
+
+- `ELK-Stack`이 연동된 `Elastic Search-MCP`를 `Claude`와 연결
+- 기존에 서버에서 발생되었던 로그들을 모두 조회하며 사용자에게 필요한 인사이트 제공 (주요 에러로깅을 종합해줌)
+
 
 ## 🏷️ Tags
 
